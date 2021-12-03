@@ -1,6 +1,6 @@
 package com.khuong.firstcommerce.service;
 
-import com.khuong.firstcommerce.entities.CustomUserDetails;
+import com.khuong.firstcommerce.entities.MyUserDetails;
 import com.khuong.firstcommerce.entities.User;
 import com.khuong.firstcommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if(user == null) {
             throw new UsernameNotFoundException("User Not Found");
         }
-        return new CustomUserDetails(user);
+        return new MyUserDetails(user);
     }
 }

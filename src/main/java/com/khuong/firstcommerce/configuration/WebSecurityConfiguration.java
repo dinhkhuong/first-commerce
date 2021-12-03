@@ -3,6 +3,7 @@ package com.khuong.firstcommerce.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,15 +30,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/")
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                /*.antMatchers("/")
                 .permitAll()
                 .antMatchers("/home")
                 .hasAuthority("USER")
                 .antMatchers("/admin")
-                .hasAuthority("ADMIN")
+                .hasAuthority("ADMIN")*/
+                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                 .anyRequest()
                 .authenticated()
+                //.and().formLogin()
                 .and()
                 .httpBasic();
     }
