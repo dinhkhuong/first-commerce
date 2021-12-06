@@ -2,9 +2,11 @@ package com.khuong.firstcommerce.entities;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "User")
+@Table(name = "User",
+        uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class User {
 
     @Id
@@ -12,9 +14,17 @@ public class User {
     private Long id;
 
     private String username;
+
     private String password;
+
     private String email;
+
     private String role;
+
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinTable(name = "userProductList", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> productList;
 
     @Override
     public String toString() {
@@ -65,5 +75,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }

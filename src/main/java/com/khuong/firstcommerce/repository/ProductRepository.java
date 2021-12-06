@@ -1,12 +1,10 @@
 package com.khuong.firstcommerce.repository;
 
-import com.khuong.firstcommerce.entities.User;
+import com.khuong.firstcommerce.entities.Product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
-    User findByUsername(String username);
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }
-

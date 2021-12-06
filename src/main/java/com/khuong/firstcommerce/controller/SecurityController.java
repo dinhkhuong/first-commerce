@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SecurityController {
 
-    ///http://localhost:8080/home
-    @GetMapping("/home")
+    ///http://localhost:8080/profile
+    @GetMapping("/profile")
     public UserDetails home(Authentication authentication){
         UserDetails userPrincipal = (UserDetails)authentication.getPrincipal();
 

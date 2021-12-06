@@ -1,18 +1,18 @@
 package com.khuong.firstcommerce.entities;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+
 
 import java.util.Collection;
 import java.util.Collections;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 public class MyUserDetails implements UserDetails {
 
     private User user;
 
     public MyUserDetails(User user) {
-        super();
         this.user = user;
     }
 
@@ -31,8 +31,8 @@ public class MyUserDetails implements UserDetails {
         return user.getUsername();
     }
 
-
     public String getEmail(){ return user.getEmail();}
+
 
     @Override
     public boolean isAccountNonExpired() {
